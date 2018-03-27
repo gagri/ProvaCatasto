@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Appartamento.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">catasto</a> &gt; <a href="index.source.html" class="el_package">base</a> &gt; <span class="el_source">Appartamento.java</span></div><h1>Appartamento.java</h1><pre class="source lang-java linenums">package base;
+
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class Appartamento extends Abitazione {
+
+	public Appartamento(String identificativo, String nomePalazzo, String via, String nCiv, String comune, String piano, int nStanze, double mQuadri, double prezzo) {
+<span class="fc" id="L9">		super(identificativo, via, nCiv, comune, prezzo);</span>
+<span class="fc" id="L10">		this.nomePalazzo = nomePalazzo;</span>
+<span class="fc" id="L11">		this.piano = piano;</span>
+<span class="fc" id="L12">		this.nStanze = nStanze;</span>
+<span class="fc" id="L13">		this.mQuadri = mQuadri;</span>
+<span class="fc" id="L14">	}</span>
+
+	public String getNomePalazzo() {
+<span class="fc" id="L17">		return nomePalazzo;</span>
+	}
+
+	public String getPiano() {
+<span class="nc" id="L21">		return piano;</span>
+	}
+
+	public int getStanze() {
+<span class="fc" id="L25">		return nStanze;</span>
+	}
+
+	public double getmQuadri() {
+<span class="fc" id="L29">		return mQuadri;</span>
+	}
+
+	public void print(PrintStream ps) {
+<span class="fc" id="L33">		ps.println(super.getIdentificativo());</span>
+<span class="fc" id="L34">		ps.println(nomePalazzo);</span>
+<span class="fc" id="L35">		ps.println(super.getVia());</span>
+<span class="fc" id="L36">		ps.println(super.getnCiv());</span>
+<span class="fc" id="L37">		ps.println(super.getComune());</span>
+<span class="fc" id="L38">		ps.println(piano);</span>
+<span class="fc" id="L39">		ps.println(nStanze);</span>
+<span class="fc" id="L40">		ps.println(mQuadri);</span>
+<span class="fc" id="L41">		ps.println(super.getPrezzo());</span>
+
+<span class="fc" id="L43">	}</span>
+
+	public void print() {
+<span class="fc" id="L46">		this.print(System.out);</span>
+<span class="fc" id="L47">	}</span>
+
+	public static Appartamento read(Scanner sc) {
+		String identificativo, nomePalazzo, via, nCiv, comune, piano;
+		int nStanze;
+		double mQuadri, prezzo;
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L54">			return null;</span>
+		}
+<span class="fc" id="L56">		identificativo = sc.nextLine();</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L58">			return null;</span>
+		}
+<span class="fc" id="L60">		nomePalazzo = sc.nextLine();</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L62">			return null;</span>
+		}
+<span class="fc" id="L64">		via = sc.nextLine();</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L66">			return null;</span>
+		}
+<span class="fc" id="L68">		nCiv = sc.nextLine();</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L70">			return null;</span>
+		}
+<span class="fc" id="L72">		comune = sc.nextLine();</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L74">			return null;</span>
+		}
+<span class="fc" id="L76">		piano = sc.nextLine();</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L78">			return null;</span>
+		}
+<span class="fc" id="L80">		String nStanzes = sc.nextLine();</span>
+<span class="fc" id="L81">		nStanze = Integer.parseInt(nStanzes);</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L83">			return null;</span>
+		}
+<span class="fc" id="L85">		String mQuadris = sc.nextLine();</span>
+<span class="fc" id="L86">		mQuadri = Double.parseDouble(mQuadris);</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L88">			return null;</span>
+		}
+<span class="fc" id="L90">		String prezzos = sc.nextLine();</span>
+		try {
+<span class="fc" id="L92">			prezzo = Double.parseDouble(prezzos);</span>
+<span class="nc" id="L93">		} catch (NumberFormatException e) {</span>
+<span class="nc" id="L94">			System.err.println(e.getMessage());</span>
+<span class="nc" id="L95">			System.err.println(&quot;errore nel formato del prezzo dell'abitazione: &quot;+identificativo);</span>
+<span class="nc" id="L96">			System.err.println(&quot;il prezzo sara corretto&quot;);</span>
+<span class="nc" id="L97">			int lunghezzaStringa = prezzos.length();</span>
+<span class="nc" id="L98">			String dec = prezzos.substring(lunghezzaStringa - 2, lunghezzaStringa);</span>
+<span class="nc" id="L99">			String intero = prezzos.substring(0, lunghezzaStringa - 4);</span>
+<span class="nc" id="L100">			prezzos = intero + &quot;.&quot; + dec;</span>
+<span class="nc" id="L101">			prezzo = Double.parseDouble(prezzos);</span>
+<span class="fc" id="L102">		}</span>
+<span class="fc" id="L103">		return new Appartamento(identificativo, nomePalazzo, via, nCiv, comune,	piano, nStanze, mQuadri, prezzo);</span>
+	}
+
+	private String nomePalazzo, piano;
+	private int nStanze;
+	private double mQuadri;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

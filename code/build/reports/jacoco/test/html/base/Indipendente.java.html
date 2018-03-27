@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Indipendente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">catasto</a> &gt; <a href="index.source.html" class="el_package">base</a> &gt; <span class="el_source">Indipendente.java</span></div><h1>Indipendente.java</h1><pre class="source lang-java linenums">package base;
+
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class Indipendente extends Abitazione {
+
+	public Indipendente(String identificativo, String via, String nCiv,
+			String comune, int nPiani, boolean giardino, double prezzo) {
+<span class="fc" id="L10">		super(identificativo, via, nCiv, comune, prezzo);</span>
+<span class="fc" id="L11">		this.giardino = giardino;</span>
+<span class="fc" id="L12">		this.nPiani = nPiani;</span>
+<span class="fc" id="L13">	}</span>
+
+	public int getnPiani() {
+<span class="nc" id="L16">		return nPiani;</span>
+	}
+
+	public boolean isGiardino() {
+<span class="fc" id="L20">		return giardino;</span>
+	}
+
+	public void print(PrintStream ps) {
+<span class="fc" id="L24">		ps.println(super.getIdentificativo());</span>
+<span class="fc" id="L25">		ps.println(super.getVia());</span>
+<span class="fc" id="L26">		ps.println(super.getnCiv());</span>
+<span class="fc" id="L27">		ps.println(super.getComune());</span>
+<span class="fc" id="L28">		ps.println(nPiani);</span>
+<span class="fc" id="L29">		ps.println(giardino);</span>
+<span class="fc" id="L30">		ps.println(super.getPrezzo());</span>
+<span class="fc" id="L31">	}</span>
+
+	public void print() {
+<span class="nc" id="L34">		this.print(System.out);</span>
+<span class="nc" id="L35">	}</span>
+
+	public static Indipendente read(Scanner sc) {
+		String identificativo, via, nCiv, comune;
+		int nPiani;
+		boolean giardino;
+		double prezzo;
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L43">			return null;</span>
+		}
+<span class="fc" id="L45">		identificativo = sc.nextLine();</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L47">			return null;</span>
+		}
+<span class="fc" id="L49">		via = sc.nextLine();</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L51">			return null;</span>
+		}
+<span class="fc" id="L53">		nCiv = sc.nextLine();</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L55">			return null;</span>
+		}
+<span class="fc" id="L57">		comune = sc.nextLine();</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L59">			return null;</span>
+		}
+<span class="fc" id="L61">		String nPianis = sc.nextLine();</span>
+<span class="fc" id="L62">		nPiani = Integer.parseInt(nPianis);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L64">			return null;</span>
+		}
+<span class="fc" id="L66">		String giardinos = sc.nextLine();</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">		if (giardinos.equalsIgnoreCase(&quot;true&quot;)) {</span>
+<span class="fc" id="L68">			giardino = true;</span>
+		} else {
+<span class="nc" id="L70">			giardino = false;</span>
+		}
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L73">			return null;</span>
+		}
+<span class="fc" id="L75">		String prezzos = sc.nextLine();</span>
+		try {
+<span class="fc" id="L77">			prezzo = Double.parseDouble(prezzos);</span>
+<span class="nc" id="L78">		} catch (NumberFormatException e) {</span>
+<span class="nc" id="L79">			int lunghezzaStringa = prezzos.length();</span>
+<span class="nc" id="L80">			String dec = prezzos.substring(lunghezzaStringa - 2, lunghezzaStringa);</span>
+<span class="nc" id="L81">			String intero = prezzos.substring(0, lunghezzaStringa - 4);</span>
+<span class="nc" id="L82">			prezzos = intero + &quot;.&quot; + dec;</span>
+<span class="nc" id="L83">			prezzo = Double.parseDouble(prezzos);</span>
+<span class="fc" id="L84">		}</span>
+
+<span class="fc" id="L86">		return new Indipendente(identificativo, via, nCiv, comune, nPiani,</span>
+				giardino, prezzo);
+	}
+
+	private int nPiani;
+	private boolean giardino;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

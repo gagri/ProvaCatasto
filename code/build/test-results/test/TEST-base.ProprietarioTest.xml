@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="base.ProprietarioTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2018-03-27T16:01:52" hostname="DESKTOP-HM31OVF" time="0.012">
+  <properties/>
+  <testcase name="getAbitazioni" classname="base.ProprietarioTest" time="0.0"/>
+  <testcase name="printAbitazioni" classname="base.ProprietarioTest" time="0.001"/>
+  <testcase name="addAbitazione" classname="base.ProprietarioTest" time="0.001"/>
+  <testcase name="print1" classname="base.ProprietarioTest" time="0.001"/>
+  <testcase name="getDataNascita" classname="base.ProprietarioTest" time="0.0"/>
+  <testcase name="getNome" classname="base.ProprietarioTest" time="0.0"/>
+  <testcase name="read" classname="base.ProprietarioTest" time="0.001"/>
+  <testcase name="print" classname="base.ProprietarioTest" time="0.003"/>
+  <testcase name="read2" classname="base.ProprietarioTest" time="0.001"/>
+  <testcase name="getCodFis" classname="base.ProprietarioTest" time="0.0"/>
+  <testcase name="getLuogoNascita" classname="base.ProprietarioTest" time="0.001"/>
+  <testcase name="printAbitazioni1" classname="base.ProprietarioTest" time="0.0"/>
+  <testcase name="getCognome" classname="base.ProprietarioTest" time="0.0"/>
+  <system-out><![CDATA[aab
+Villa gioia
+Via Roma
+2A
+Benevento
+2
+4
+1000.0
+100000.0
+aab
+Villa gioia
+Via Roma
+2A
+Benevento
+2
+4
+1000.0
+100000.0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="base.ProprietarioAbitazioneTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-03-27T16:01:52" hostname="DESKTOP-HM31OVF" time="0.008">
+  <properties/>
+  <testcase name="getAbitazione" classname="base.ProprietarioAbitazioneTest" time="0.002"/>
+  <testcase name="setAbitazione" classname="base.ProprietarioAbitazioneTest" time="0.0"/>
+  <testcase name="setProprietario" classname="base.ProprietarioAbitazioneTest" time="0.0"/>
+  <testcase name="read" classname="base.ProprietarioAbitazioneTest" time="0.002"/>
+  <testcase name="read2" classname="base.ProprietarioAbitazioneTest" time="0.001"/>
+  <testcase name="getIdentificativo" classname="base.ProprietarioAbitazioneTest" time="0.0"/>
+  <testcase name="getCodFis" classname="base.ProprietarioAbitazioneTest" time="0.0"/>
+  <testcase name="getProprietario" classname="base.ProprietarioAbitazioneTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

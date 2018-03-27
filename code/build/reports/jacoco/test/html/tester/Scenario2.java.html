@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Scenario2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">catasto</a> &gt; <a href="index.source.html" class="el_package">tester</a> &gt; <span class="el_source">Scenario2.java</span></div><h1>Scenario2.java</h1><pre class="source lang-java linenums">package tester;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+import base.Abitazione;
+import base.Appartamento;
+import base.Indipendente;
+
+<span class="nc" id="L11">public class Scenario2 {</span>
+
+	
+	public static void main(String[] args) throws FileNotFoundException {
+<span class="nc" id="L15">		Scanner scAb=new Scanner(new File(&quot;soluzioni.txt&quot;));</span>
+<span class="nc" id="L16">		String tipo=scAb.nextLine();</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">		if(tipo.equalsIgnoreCase(&quot;appartamento&quot;)){</span>
+<span class="nc" id="L18">			Abitazione ab=Appartamento.read(scAb);</span>
+<span class="nc" id="L19">			ab.print();</span>
+<span class="nc" id="L20">			System.out.println(ab);</span>
+		}
+		
+		/*if(tipo.equalsIgnoreCase(&quot;indipendente&quot;)){
+			Abitazione ab2=Appartamento.read(scAb);
+			ab2.print();
+		}
+		String tipo2=scAb.nextLine();
+		if(tipo2.equalsIgnoreCase(&quot;appartamento&quot;)){
+			Abitazione ab=Appartamento.read(scAb);
+			ab.print();
+		}
+		if(tipo2.equalsIgnoreCase(&quot;indipendente&quot;)){
+			Abitazione ab2=Indipendente.read(scAb);
+			ab2.print();
+		}*/
+<span class="nc" id="L36">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Proprietario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">catasto</a> &gt; <a href="index.source.html" class="el_package">base</a> &gt; <span class="el_source">Proprietario.java</span></div><h1>Proprietario.java</h1><pre class="source lang-java linenums">package base;
+
+import java.io.PrintStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+
+
+
+public class Proprietario {
+
+	public Proprietario(String codFis, String cognome, String nome,
+<span class="fc" id="L15">			Date dataNascita, String luogoNascita) {</span>
+
+<span class="fc" id="L17">		this.codFis = codFis;</span>
+<span class="fc" id="L18">		this.cognome = cognome;</span>
+<span class="fc" id="L19">		this.nome = nome;</span>
+<span class="fc" id="L20">		this.dataNascita = dataNascita;</span>
+<span class="fc" id="L21">		this.luogoNascita = luogoNascita;</span>
+<span class="fc" id="L22">		this.abitazioni=new ArrayList&lt;Abitazione&gt;();</span>
+<span class="fc" id="L23">	}</span>
+
+	public void addAbitazione(Abitazione ab){
+<span class="fc" id="L26">		this.abitazioni.add(ab);</span>
+<span class="fc" id="L27">	}</span>
+	public ArrayList&lt;Abitazione&gt; getAbitazioni(){
+<span class="fc" id="L29">		return abitazioni;</span>
+	}
+	public void printAbitazioni(PrintStream ps){
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		for (Abitazione a : abitazioni){</span>
+<span class="nc" id="L33">			a.print(ps);</span>
+<span class="nc" id="L34">		}</span>
+<span class="nc" id="L35">	}</span>
+	public void printAbitazioni(){
+<span class="nc" id="L37">		this.printAbitazioni(System.out);</span>
+<span class="nc" id="L38">	}</span>
+	public void print(PrintStream ps) {
+<span class="fc" id="L40">		ps.println(codFis);</span>
+<span class="fc" id="L41">		ps.println(cognome);</span>
+<span class="fc" id="L42">		ps.println(nome);</span>
+<span class="fc" id="L43">		SimpleDateFormat df=new SimpleDateFormat(&quot;dd/MM/yyyy&quot;);</span>
+<span class="fc" id="L44">		String data=df.format(dataNascita);</span>
+<span class="fc" id="L45">		ps.println(data);</span>
+<span class="fc" id="L46">		ps.println(luogoNascita);</span>
+<span class="fc" id="L47">	}</span>
+
+	public String getCodFis() {
+<span class="fc" id="L50">		return codFis;</span>
+	}
+
+	public String getCognome() {
+<span class="fc" id="L54">		return cognome;</span>
+	}
+
+	public String getNome() {
+<span class="fc" id="L58">		return nome;</span>
+	}
+
+	public String getLuogoNascita() {
+<span class="fc" id="L62">		return luogoNascita;</span>
+	}
+
+	public Date getDataNascita() {
+<span class="fc" id="L66">		return dataNascita;</span>
+	}
+
+	public void print() {
+<span class="nc" id="L70">		this.print(System.out);</span>
+<span class="nc" id="L71">	}</span>
+
+	public static Proprietario read(Scanner sc) {
+		String codFis, cognome, nome, dataNascita, luogoNascita;
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L76">			return null;</span>
+		}
+<span class="fc" id="L78">		codFis = sc.nextLine();</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L80">			return null;</span>
+		}
+<span class="fc" id="L82">		cognome = sc.nextLine();</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L84">			return null;</span>
+		}
+<span class="fc" id="L86">		nome = sc.nextLine();</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">		if (!sc.hasNextLine()) {</span>
+<span class="fc" id="L88">			return null;</span>
+		}
+		
+<span class="fc" id="L91">		dataNascita = sc.nextLine();</span>
+<span class="fc" id="L92">		SimpleDateFormat df=new SimpleDateFormat(&quot;dd/MM/yyyy&quot;);</span>
+<span class="fc" id="L93">		Date oggi=new Date();</span>
+		Date nascita;
+		try{
+<span class="fc" id="L96">		nascita=df.parse(dataNascita);</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">		if(nascita.after(oggi)){</span>
+<span class="nc" id="L98">			throw new InvalidDateException(&quot;la data di nascita e superiore a quella odierna&quot;);</span>
+		}
+<span class="nc" id="L100">		}catch(ParseException e){</span>
+<span class="nc" id="L101">			System.err.println(&quot;Riscontrato errore nel parsing della data di nascita di: &quot;+codFis );</span>
+<span class="nc" id="L102">			System.err.println(e.getMessage());</span>
+<span class="nc" id="L103">			System.err.println(&quot;la data di nascita verra posta pari a quella odierna&quot;);</span>
+<span class="nc" id="L104">			nascita=oggi;</span>
+		}
+<span class="nc" id="L106">		catch(InvalidDateException e){</span>
+<span class="nc" id="L107">			System.err.println(&quot;Riscontrato errore nella data di nascita di: &quot;+codFis );</span>
+<span class="nc" id="L108">			System.err.println(e.getMessage());</span>
+<span class="nc" id="L109">			System.err.println(&quot;la data di nascita verra posta pari a quella odierna&quot;);</span>
+<span class="nc" id="L110">			nascita=oggi;</span>
+			
+<span class="pc" id="L112">		}</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">		if (!sc.hasNextLine()) {</span>
+<span class="nc" id="L114">			return null;</span>
+		}
+<span class="fc" id="L116">		luogoNascita = sc.nextLine();</span>
+
+<span class="fc" id="L118">		return new Proprietario(codFis, cognome, nome, nascita,</span>
+				luogoNascita);
+	}
+
+	private String codFis, cognome, nome, luogoNascita;
+	private Date dataNascita;
+	private ArrayList&lt;Abitazione&gt; abitazioni;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

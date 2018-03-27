@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Gestore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">catasto</a> &gt; <a href="index.source.html" class="el_package">base</a> &gt; <span class="el_source">Gestore.java</span></div><h1>Gestore.java</h1><pre class="source lang-java linenums">package base;
+
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Gestore {
+
+<span class="fc" id="L9">	private Gestore(ArrayList&lt;Abitazione&gt; abitazioni,ArrayList&lt;Proprietario&gt; proprietari) {</span>
+<span class="fc" id="L10">		this.abitazioni = abitazioni;</span>
+<span class="fc" id="L11">		this.proprietari = proprietari;</span>
+<span class="fc" id="L12">	}</span>
+
+<span class="fc" id="L14">	public Gestore(Scanner scAb, Scanner scProp, Scanner scPropAb) {</span>
+
+<span class="fc" id="L16">		abitazioni = new ArrayList&lt;Abitazione&gt;();</span>
+
+		String tipo;
+
+<span class="fc bfc" id="L20" title="All 2 branches covered.">		while (scAb.hasNextLine()) {</span>
+<span class="fc" id="L21">			tipo = scAb.nextLine();</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">			if (tipo.equalsIgnoreCase(&quot;appartamento&quot;)) {</span>
+<span class="fc" id="L24">				Appartamento tmp = Appartamento.read(scAb);</span>
+<span class="fc" id="L25">				abitazioni.add(tmp);</span>
+			}
+<span class="fc bfc" id="L27" title="All 2 branches covered.">			if (tipo.equalsIgnoreCase(&quot;indipendente&quot;)) {</span>
+<span class="fc" id="L28">				Indipendente tmp = Indipendente.read(scAb);</span>
+<span class="fc" id="L29">				abitazioni.add(tmp);</span>
+<span class="fc" id="L30">			}</span>
+
+		}
+<span class="fc" id="L33">		proprietari = new ArrayList&lt;Proprietario&gt;();</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">		while (scProp.hasNextLine()) {</span>
+<span class="fc" id="L35">			Proprietario tmp = Proprietario.read(scProp);</span>
+<span class="fc" id="L36">			proprietari.add(tmp);</span>
+
+<span class="fc" id="L38">		}</span>
+		ProprietarioAbitazione propAb;
+		Abitazione abTmp;
+		Proprietario propTmp;
+<span class="fc bfc" id="L42" title="All 2 branches covered.">		while (scPropAb.hasNextLine()) {</span>
+<span class="fc" id="L43">			propAb = ProprietarioAbitazione.read(scPropAb);</span>
+<span class="fc" id="L44">			propTmp = this.cercaPerCodFis(propAb.getCodFis());</span>
+<span class="fc" id="L45">			abTmp = this.cercaPerIdentificativo(propAb.getIdentificativo());</span>
+<span class="fc" id="L46">			propAb.setAbitazione(abTmp);</span>
+<span class="fc" id="L47">			propAb.setProprietario(propTmp);</span>
+<span class="fc" id="L48">			propTmp.addAbitazione(abTmp);</span>
+<span class="fc" id="L49">			abTmp.addProprietario(propTmp);</span>
+		}
+<span class="fc" id="L51">	}</span>
+
+	public void printAbitazioni(PrintStream ps) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		for (Abitazione ab : abitazioni) {</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">			if (ab instanceof Appartamento){</span>
+<span class="fc" id="L56">				Appartamento app=(Appartamento) ab;</span>
+<span class="fc" id="L57">				app.print(ps);</span>
+			}
+				
+<span class="fc bfc" id="L60" title="All 2 branches covered.">			if (ab instanceof Indipendente){</span>
+<span class="fc" id="L61">				Indipendente ind=(Indipendente) ab;</span>
+<span class="fc" id="L62">				ind.print(ps);</span>
+			}
+<span class="fc" id="L64">		}</span>
+<span class="fc" id="L65">	}</span>
+
+	public void printAbitazioni() {
+<span class="nc" id="L68">		this.printAbitazioni(System.out);</span>
+
+<span class="nc" id="L70">	}</span>
+
+	public void printProprietari(PrintStream ps) {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		for (Proprietario ab : proprietari) {</span>
+<span class="fc" id="L74">			ab.print(ps);</span>
+<span class="fc" id="L75">		}</span>
+<span class="fc" id="L76">	}</span>
+
+	public void printProprietari() {
+<span class="nc" id="L79">		this.printProprietari(System.out);</span>
+
+<span class="nc" id="L81">	}</span>
+	public void print(PrintStream ps){
+<span class="fc" id="L83">		this.printAbitazioni(ps);</span>
+<span class="fc" id="L84">		ps.println(&quot;***********&quot;);</span>
+<span class="fc" id="L85">		this.printProprietari(ps);</span>
+<span class="fc" id="L86">	}</span>
+	public void print(){
+<span class="nc" id="L88">		this.print(System.out);</span>
+<span class="nc" id="L89">	}</span>
+	
+	public Proprietario cercaPerCodFis(String CodFis) {
+<span class="fc" id="L92">		int a = 0;</span>
+<span class="fc" id="L93">		boolean trovato = false;</span>
+		Proprietario prop;
+<span class="pc bpc" id="L95" title="1 of 4 branches missed.">		while (!trovato &amp;&amp; a &lt; proprietari.size()) {</span>
+<span class="fc" id="L96">			prop = proprietari.get(a);</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">			if (prop.getCodFis().equalsIgnoreCase(CodFis)) {</span>
+<span class="fc" id="L98">				trovato = true;</span>
+<span class="fc" id="L99">				return prop;</span>
+			} else {
+<span class="fc" id="L101">				a++;</span>
+			}
+			
+		}
+<span class="fc" id="L105">		return null;</span>
+	}
+
+	public Abitazione cercaPerIdentificativo(String identificativo) {
+<span class="fc" id="L109">		int a = 0;</span>
+<span class="fc" id="L110">		boolean trovato = false;</span>
+		Abitazione ab;
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">		while (!trovato &amp;&amp; a &lt; abitazioni.size()) {</span>
+<span class="fc" id="L113">			ab = abitazioni.get(a);</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">			if (ab.getIdentificativo().equalsIgnoreCase(identificativo)) {</span>
+<span class="fc" id="L115">				trovato = true;</span>
+<span class="fc" id="L116">				return ab;</span>
+			} else {
+<span class="fc" id="L118">				a++;</span>
+			}
+			
+		}
+<span class="fc" id="L122">		return null;</span>
+	}
+
+	
+	public Gestore filtroPerComune(String comune) {
+<span class="fc" id="L127">		ArrayList&lt;Abitazione&gt; tmp = new ArrayList&lt;Abitazione&gt;();</span>
+<span class="fc" id="L128">		ArrayList&lt;Proprietario&gt; tmp2 = new ArrayList&lt;Proprietario&gt;();</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">		for (Abitazione ab : abitazioni) {</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">			if (ab.getComune().equalsIgnoreCase(comune)) {</span>
+<span class="fc" id="L131">				tmp.add(ab);</span>
+<span class="fc" id="L132">				tmp2.addAll(ab.getProprietari());</span>
+			}
+<span class="fc" id="L134">		}</span>
+<span class="fc" id="L135">		return new Gestore(tmp, tmp2);</span>
+
+	}
+
+	public Gestore filtroPerVia(String via) {
+<span class="fc" id="L140">		ArrayList&lt;Abitazione&gt; tmp = new ArrayList&lt;Abitazione&gt;();</span>
+<span class="fc" id="L141">		ArrayList&lt;Proprietario&gt; tmp2 = new ArrayList&lt;Proprietario&gt;();</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">		for (Abitazione ab : abitazioni) {</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">			if (ab.getVia().equalsIgnoreCase(via)) {</span>
+<span class="fc" id="L144">				tmp.add(ab);</span>
+<span class="fc" id="L145">				tmp2.addAll(ab.getProprietari());</span>
+			}
+<span class="fc" id="L147">		}</span>
+		
+<span class="fc" id="L149">		return new Gestore(tmp, tmp2);</span>
+	}
+	public Gestore filtroPerLuogoNascita(String comune) {
+<span class="fc" id="L152">		ArrayList&lt;Abitazione&gt; tmp = new ArrayList&lt;Abitazione&gt;();</span>
+<span class="fc" id="L153">		ArrayList&lt;Proprietario&gt; tmp2 = new ArrayList&lt;Proprietario&gt;();</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">		for (Proprietario prop : proprietari) {</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">			if (prop.getLuogoNascita().equalsIgnoreCase(comune)) {</span>
+				
+<span class="fc" id="L157">				tmp2.add(prop);</span>
+<span class="fc" id="L158">				tmp.addAll(prop.getAbitazioni());</span>
+			}
+<span class="fc" id="L160">		}</span>
+		
+<span class="fc" id="L162">		return new Gestore(tmp, tmp2);</span>
+
+	}
+	public Gestore filtroAppartamenti() {
+<span class="fc" id="L166">		ArrayList&lt;Abitazione&gt; tmp = new ArrayList&lt;Abitazione&gt;();</span>
+<span class="fc" id="L167">		ArrayList&lt;Proprietario&gt; tmp2 = new ArrayList&lt;Proprietario&gt;();</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">		for (Abitazione a:abitazioni) {</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">			if (a instanceof Appartamento) {</span>
+<span class="fc" id="L170">			tmp.add(a);</span>
+			}
+<span class="fc" id="L172">		}</span>
+		
+<span class="fc" id="L174">		return new Gestore(tmp, tmp2);</span>
+	}
+	public Gestore filtroIndipendenti() {
+<span class="fc" id="L177">		ArrayList&lt;Abitazione&gt; tmp = new ArrayList&lt;Abitazione&gt;();</span>
+<span class="fc" id="L178">		ArrayList&lt;Proprietario&gt; tmp2 = new ArrayList&lt;Proprietario&gt;();</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">		for (Abitazione a:abitazioni) {</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">			if (a instanceof Indipendente) {</span>
+<span class="fc" id="L181">			tmp.add(a);</span>
+			}
+<span class="fc" id="L183">		}</span>
+<span class="fc" id="L184">		return new Gestore(tmp, tmp2);</span>
+	}
+	private ArrayList&lt;Abitazione&gt; abitazioni;
+	private ArrayList&lt;Proprietario&gt; proprietari;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

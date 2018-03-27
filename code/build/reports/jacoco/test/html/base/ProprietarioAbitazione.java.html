@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProprietarioAbitazione.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">catasto</a> &gt; <a href="index.source.html" class="el_package">base</a> &gt; <span class="el_source">ProprietarioAbitazione.java</span></div><h1>ProprietarioAbitazione.java</h1><pre class="source lang-java linenums">package base;
+
+import java.util.Scanner;
+
+public class ProprietarioAbitazione {
+
+<span class="fc" id="L7">	public ProprietarioAbitazione(String codFis, String identificativo) {</span>
+<span class="fc" id="L8">		this.codFis = codFis;</span>
+<span class="fc" id="L9">		this.identificativo = identificativo;</span>
+<span class="fc" id="L10">		this.proprietario=null;</span>
+<span class="fc" id="L11">		this.abitazione=null;</span>
+<span class="fc" id="L12">	}</span>
+	
+	public Proprietario getProprietario() {
+<span class="fc" id="L15">		return proprietario;</span>
+	}
+
+	public void setProprietario(Proprietario proprietario) {
+<span class="fc" id="L19">		this.proprietario = proprietario;</span>
+<span class="fc" id="L20">	}</span>
+
+	public Abitazione getAbitazione() {
+<span class="fc" id="L23">		return abitazione;</span>
+	}
+
+	public void setAbitazione(Abitazione abitazione) {
+<span class="fc" id="L27">		this.abitazione = abitazione;</span>
+<span class="fc" id="L28">	}</span>
+
+	public String getCodFis() {
+<span class="fc" id="L31">		return codFis;</span>
+	}
+
+	public String getIdentificativo() {
+<span class="fc" id="L35">		return identificativo;</span>
+	}
+	public static ProprietarioAbitazione read (Scanner sc){
+		String codFis,identificativo;
+	
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">		if(!sc.hasNextLine()){ </span>
+<span class="nc" id="L41">			return null;</span>
+		}
+<span class="fc" id="L43">		codFis=sc.nextLine();</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		if(!sc.hasNextLine()){ </span>
+<span class="fc" id="L45">			return null;</span>
+		}
+<span class="fc" id="L47">		identificativo=sc.nextLine();</span>
+<span class="fc" id="L48">		return new ProprietarioAbitazione(codFis,identificativo);</span>
+	}
+	private String codFis,identificativo;
+	private Proprietario proprietario;
+	private Abitazione abitazione;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

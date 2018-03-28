@@ -21,5 +21,14 @@ jacocoTestReport{
         xml.enabled = true
         csv.enabled = true
     }
-
 }
+sourceSets {
+    main {
+        java {
+            srcDirs= ['code/src/main/java']
+        }
+
+    }
+}
+
+

@@ -3,21 +3,16 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'jacoco'
-apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
-}
-
-checkstyle{
-    toolVersion = '6.16.1'
-    config = rootProject.resources.text.fromFile('code/checkstyle-rules.xml')
 }
 
 jacocoTestReport{
@@ -28,8 +23,12 @@ jacocoTestReport{
     }
 }
 sourceSets {
-    main.java.srcDirs = ['code/src/main/java']
-    main.resources.srcDirs = ['code/src/main/resources']
-    test.java.srcDirs = ['code/src/test/java']
-    test.resources.srcDirs = ['code/src/test/resources']
+    main {
+        java {
+            srcDirs= ['code/src/main/java']
+        }
+
+    }
 }
+
+

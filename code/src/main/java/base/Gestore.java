@@ -54,11 +54,13 @@ public class Gestore {
 		for (Abitazione ab : abitazioni) {
 			if (ab instanceof Appartamento){
 				Appartamento app=(Appartamento) ab;
+				ps.println("appartamento");
 				app.print(ps);
 			}
 				
 			if (ab instanceof Indipendente){
 				Indipendente ind=(Indipendente) ab;
+				ps.println("indipendente");
 				ind.print(ps);
 			}
 		}

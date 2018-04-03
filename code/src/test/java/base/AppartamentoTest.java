@@ -24,8 +24,8 @@ public class AppartamentoTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         app1 = new Appartamento("app1","Quadrifoglio","Via dei Mille", "4", "BN","3",4,100,1200);
-        destfile = new File("src/test/resources/Appartamenti/outAppartamenti.txt");
-        srcFile = new File("src/test/resources/Appartamenti/oracleAppartamenti.txt");
+        destfile = new File("code/src/test/resources/Appartamenti/outAppartamenti.txt");
+        srcFile = new File("code/src/test/resources/Appartamenti/oracleAppartamenti.txt");
         dataN = new Date("25/6/1956");
         prop1 = new Proprietario("ll","l","l",dataN,"Na");
     }
@@ -33,12 +33,12 @@ public class AppartamentoTest {
 
     @Test
     public void getNomePalazzo() {
-        assertEquals("Failed getNomePalazzo","lo",app1.getNomePalazzo());
+        assertEquals("Failed getNomePalazzo","Quadrifoglio",app1.getNomePalazzo());
     }
 
     @Test
     public void getPiano() {
-        assertEquals("Failed getPiano","3",app1.getStanze());
+        assertEquals("Failed getPiano",4,app1.getStanze());
     }
 
     @Test
@@ -63,12 +63,12 @@ public class AppartamentoTest {
 
     @Test
     public void getnCiv() {
-        assertEquals("Failed getnCiv","6", app1.getnCiv());
+        assertEquals("Failed getnCiv","4", app1.getnCiv());
     }
 
     @Test
     public void getComune() {
-        assertEquals("Failed getComune","BN", app1.getVia());
+        assertEquals("Failed getComune","BN", app1.getComune());
     }
 
     @Test
@@ -87,18 +87,18 @@ public class AppartamentoTest {
 
     @Test
     public void read() throws FileNotFoundException {
-        Scanner scf = new Scanner(new File("src/test/resources/Appartamenti/oracleAppartamenti.txt"));
+        Scanner scf = new Scanner(new File("code/src/test/resources/Appartamenti/oracleAppartamenti.txt"));
         app2 = Appartamento.read(scf);
         app1 = new Appartamento("app1","Quadrifoglio","Via dei Mille", "4", "BN","3",4,100,1200);
 
         assertEquals("Failed getIdentificativo in read","app1",app2.getIdentificativo());
-        assertEquals("Failed getNomePalazzo in read","app1",app2.getNomePalazzo());
-        assertEquals("Failed getVia in read","app1",app2.getVia());
-        assertEquals("Failed getnCiv in read","app1",app2.getnCiv());
-        assertEquals("Failed getComune in read","app1",app2.getComune());
-        assertEquals("Failed getPiano in read","app1",app2.getPiano());
-        assertEquals("Failed getmQuadri in read","app1",app2.getmQuadri());
-        assertEquals("Failed getPrezzo in read","app1",app2.getPrezzo());
+        assertEquals("Failed getNomePalazzo in read","Quadrifoglio",app2.getNomePalazzo());
+        assertEquals("Failed getVia in read","Via dei Mille",app2.getVia());
+        assertEquals("Failed getnCiv in read","4",app2.getnCiv());
+        assertEquals("Failed getComune in read","BN",app2.getComune());
+        assertEquals("Failed getPiano in read","3",app2.getPiano());
+        assertEquals("Failed getmQuadri in read",100,app2.getmQuadri(),0.0001);
+        assertEquals("Failed getPrezzo in read",1200,app2.getPrezzo(),0.0001);
     }
 
     @Test

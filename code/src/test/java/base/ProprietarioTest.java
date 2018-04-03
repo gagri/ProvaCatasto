@@ -66,10 +66,10 @@ public class ProprietarioTest  {
 
     @Test
     public void print() throws Exception {
-        File f=new File("src/test/resources/Proprietario/outPrint");
+        File f=new File("code/src/test/resources/Proprietario/outPrint");
         PrintStream ps=new PrintStream(f);
         p.print(ps);
-        File f2=new File("src/test/resources/Proprietario/oracoloPrintProprietario");
+        File f2=new File("code/src/test/resources/Proprietario/oracoloPrintProprietario");
 
         boolean isTwoEqual = FileUtils.contentEquals(f,f2);
         assertTrue("FAILED print", isTwoEqual);
@@ -115,7 +115,7 @@ public class ProprietarioTest  {
 
     @Test
     public void read() throws Exception {
-        Scanner sc=new Scanner(new File("src/test/resources/Proprietario/oracoloRead"));
+        Scanner sc=new Scanner(new File("code/src/test/resources/Proprietario/oracoloRead"));
         Proprietario p=Proprietario.read(sc);
         assertEquals("FAILED getCodFis in read" , "BBNASQ84G15" , p.getCodFis());
         assertEquals(" FAILED getCognome in read","Abbenante" , p.getCognome());
@@ -134,7 +134,7 @@ public class ProprietarioTest  {
 
     @Test
     public void read2() throws Exception {
-        Scanner sc=new Scanner(new File("src/test/resources/Proprietario/oracoloRead2"));
+        Scanner sc=new Scanner(new File("code/src/test/resources/Proprietario/oracoloRead2"));
         Proprietario p=Proprietario.read(sc);
         assertNull("FAILED read2" , p);
     }

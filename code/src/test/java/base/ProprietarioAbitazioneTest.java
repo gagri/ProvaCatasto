@@ -82,7 +82,7 @@ public class ProprietarioAbitazioneTest {
 
     @Test
     public void read() throws Exception {
-        Scanner sc=new Scanner(new File("src/test/resources/ProprietarioAbitazione/oracoloRead"));
+        Scanner sc=new Scanner(new File("code/src/test/resources/ProprietarioAbitazione/oracoloRead"));
         ProprietarioAbitazione proprietarioAbitazione=ProprietarioAbitazione.read(sc);
         assertEquals("GRMGAI92M65A783B" , proprietarioAbitazione.getCodFis());
         assertEquals("23app" , proprietarioAbitazione.getIdentificativo());
@@ -90,7 +90,7 @@ public class ProprietarioAbitazioneTest {
 
     @Test
     public void read2() throws Exception {
-        Scanner sc=new Scanner(new File("src/test/resources/ProprietarioAbitazione/oracoloRead2"));
+        Scanner sc=new Scanner(new File("code/src/test/resources/ProprietarioAbitazione/oracoloRead2"));
         ProprietarioAbitazione proprietarioAbitazione=ProprietarioAbitazione.read(sc);
 
 

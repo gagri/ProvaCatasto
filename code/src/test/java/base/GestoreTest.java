@@ -16,13 +16,14 @@ import static org.junit.Assert.*;
 
 public class GestoreTest {
     private static Gestore gestore;
-    private static File soluzioni = new File("soluzioni.txt");
-    private static File proprietari = new File("proprietari.txt");
-    private static File proprieta = new File("proprieta.txt");
-    private static String path = "src/test/resources/Gestore/";
+    private static File soluzioni = new File("code/src/main/resources/soluzioni.txt");
+    private static File proprietari = new File("code/src/main/resources/proprietari.txt");
+    private static File proprieta = new File("code/src/main/resources/proprieta.txt");
+    private static String path = "code/src/test/resources/Gestore/";
     private static Appartamento appartamento;
     private static Indipendente indipendente;
     private static Proprietario proprietario;
+    final String newLine = System.getProperty("line.separator");
 
     @BeforeClass
     public static void seUpBeforeClass()throws Exception{
@@ -61,9 +62,10 @@ public class GestoreTest {
 
     @Test
     public void print() throws Exception {
+
         File oracle = new File(path+"oraclePrint");
         FileUtils.copyFile(soluzioni, oracle);
-        FileUtils.write(oracle,"***********", Charset.defaultCharset(),true);
+        FileUtils.write(oracle,"***********"+newLine, Charset.defaultCharset(),true);
         FileUtils.write(oracle, FileUtils.readFileToString(proprietari, Charset.defaultCharset()), Charset.defaultCharset(), true);
 
         File out = new File(path+"outPrint");
@@ -113,8 +115,9 @@ public class GestoreTest {
     public void filtroPerComune() throws Exception {
         File oracle = new File (path+"oracleFiltroPerComune");
         Abitazione a = appartamento;
-
-        a.print(new PrintStream(oracle));
+        PrintStream ps = new PrintStream(new PrintStream(oracle));
+        ps.println("appartamento");
+        a.print(ps);
         File out = new File(path+"outFiltroPerComune");
         gestore.filtroPerComune(a.getComune()).printAbitazioni(new PrintStream(out));
 
@@ -125,8 +128,9 @@ public class GestoreTest {
     public void filtroPerVia() throws Exception {
         File oracle = new File (path+"oracleFiltroPerVia");
         Abitazione a = appartamento;
-
-        a.print(new PrintStream(oracle));
+        PrintStream ps = new PrintStream(new PrintStream(oracle));
+        ps.println("appartamento");
+        a.print(ps);
 
         File out = new File(path+"outFiltroPerVia");
         gestore.filtroPerVia(a.getVia()).printAbitazioni(new PrintStream(out));
@@ -148,9 +152,11 @@ public class GestoreTest {
 
     @Test
     public void filtroAppartamenti() throws Exception {
-        Abitazione a = appartamento;
+        Abitazione a = (Abitazione) appartamento;
         File oracle = new File (path+"oracleFiltroAppartamenti");
-        a.print(new PrintStream(oracle));
+        PrintStream ps = new PrintStream(new PrintStream(oracle));
+        ps.println("appartamento");
+        a.print(new PrintStream(ps));
 
         File out = new File(path+"outFiltroAppartamenti");
         gestore.filtroAppartamenti().printAbitazioni(new PrintStream(out));
@@ -159,9 +165,11 @@ public class GestoreTest {
 
     @Test
     public void filtroIndipendenti() throws Exception {
-        Abitazione a = indipendente;
+        Abitazione a =(Abitazione) indipendente;
         File oracle = new File (path+"oracleFiltroIndipendenti");
-        a.print(new PrintStream(oracle));
+        PrintStream ps = new PrintStream(new PrintStream(oracle));
+        ps.println("indipendente");
+        a.print(ps);
 
         File out = new File(path+"outFiltroIndipendenti");
         gestore.filtroIndipendenti().printAbitazioni(new PrintStream(out));

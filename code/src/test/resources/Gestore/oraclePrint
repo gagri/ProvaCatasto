@@ -6,8 +6,8 @@ via roma
 caserta
 3
 5
-120
-200000.00
+120.0
+200000.0
 indipendente
 89ind
 via milano
@@ -15,8 +15,9 @@ via milano
 benevento
 3
 true
-302000
-***********BBNASQ84G15
+302000.0
+***********
+BBNASQ84G15
 Abbenante
 Pasquale
 10/07/1984

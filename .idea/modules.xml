@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProvaCatasto.iml" filepath="$PROJECT_DIR$/ProvaCatasto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProvaCatasto_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ProvaCatasto_main.iml" group="ProvaCatasto" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProvaCatasto_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ProvaCatasto_test.iml" group="ProvaCatasto" />
     </modules>
   </component>
 </project>
